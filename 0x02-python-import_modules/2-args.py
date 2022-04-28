@@ -8,4 +8,4 @@ if __name__ == "__main__":
     else:
         print("{} arguments:".format(len(sys.argv) - 1))
     for i, sys.argv in enumerate(sys.argv[1:]):
-        print(i+1, ":", sys.argv)
+        print(f"{i+1}: {sys.argv}")
