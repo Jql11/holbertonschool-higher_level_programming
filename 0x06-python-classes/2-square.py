@@ -1,8 +1,12 @@
 #!/usr/bin/python3
-"""define a class Square"""
+"""
+Module 2-square
+Defines class Square with private attribute size and validates size
+"""
 
 
 class Square:
+    """define a class"""
     def __init__(self, size=0):
         """private instance attribute
         """
