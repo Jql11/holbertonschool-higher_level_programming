@@ -23,8 +23,6 @@ class Square:
         else:
             self.__size = value
 
-    """private instance attribute 2
-    """
     @property
     def position(self):
         """getter 2"""
@@ -59,6 +57,5 @@ class Square:
                 if self.position[1] > 0:
                     print("")
             for j in range(self.__size):
-                for k in range(self.__position[0]):
-                    print(" ", end="")
+                print(" " * self.__position[0], end="")
                 print("#" * self.__size)
