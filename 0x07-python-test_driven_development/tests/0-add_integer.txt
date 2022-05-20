@@ -1,0 +1,74 @@
+task 0 write a function that adds 2 integers
+
+>>> add_integer = __import__('0-add_integer').add_integer
+
+SUCESS CASES:
+
+Test with 2 signed or unsigned integers and floats
+	>>> print(add_integer(1, 2))
+	3
+	>>> print(add_integer(-1, 1))
+	0
+	>>> print(add_integer(100.5, 1.6))
+	101
+	>>> print(add_integer(100.5, -1))
+	99
+
+Test with default b=98 value:
+	>>> print(add_integer(1))
+	99
+	>>> print(add_integer(2.5))
+	100
+
+Test with bool
+	>>> add_integer(True)
+	99
+	>>> add_integer(-5, False)
+	-5
+	
+
+Failed Cases:
+
+Test with no argument
+	>>> add_integer()
+	Traceback (most recent call last):
+	...
+	TypeError: add_integer() missing 1 required positional argument: 'a'
+
+Test with more than 2 arguments
+	>>> add_integer(1, 2, 3)
+	Traceback (most recent call last):
+	...
+	TypeError: add_integer() takes from 1 to 2 positional arguments but 3 were given
+
+Test with other data type
+	>>> add_integer(4, "School")
+	Traceback (most recent call last):
+	...
+	TypeError: b must be an integer
+	>>> add_integer(None)
+	Traceback (most recent call last):
+	...
+	TypeError: a must be an integer
+	>>> add_integer("hello", "world")
+        Traceback (most recent call last):
+        ...
+        TypeError: a must be an integer
+	>>> add_integer(3, [1, 2, 3])
+        Traceback (most recent call last):
+        ...
+        TypeError: b must be an integer
+
+Test with infinity
+	>>> add_integer(float('inf'))
+	Traceback (most recent call last):
+        ...
+	OverflowError: cannot convert float infinity to integer
+	>>> add_integer(float('-inf'))
+        Traceback (most recent call last):
+        ...
+	OverflowError: cannot convert float infinity to integer
+	>>> add_integer(float('nan'))
+        Traceback (most recent call last):
+        ...
+	ValueError: cannot convert float NaN to integer
