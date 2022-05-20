@@ -41,7 +41,7 @@ Test with more than 2 arguments
 	...
 	TypeError: add_integer() takes from 1 to 2 positional arguments but 3 were given
 
-Test with other data type
+Test with other data type(string, None, list, complex, set, dic)
 	>>> add_integer(4, "School")
 	Traceback (most recent call last):
 	...
@@ -59,6 +59,14 @@ Test with other data type
         ...
         TypeError: b must be an integer
 	>>> add_integer(3, 2+3j)
+        Traceback (most recent call last):
+        ...
+        TypeError: b must be an integer
+	>>> add_integer(3, {1, 2})
+        Traceback (most recent call last):
+        ...
+        TypeError: b must be an integer
+	>>> add_integer(3, {1:'Hi'})
         Traceback (most recent call last):
         ...
         TypeError: b must be an integer
