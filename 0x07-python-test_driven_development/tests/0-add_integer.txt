@@ -58,6 +58,10 @@ Test with other data type
         Traceback (most recent call last):
         ...
         TypeError: b must be an integer
+	>>> add_integer(3, 2+3j)
+        Traceback (most recent call last):
+        ...
+        TypeError: b must be an integer
 
 Test with infinity
 	>>> add_integer(float('inf'))
