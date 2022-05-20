@@ -1,9 +1,6 @@
 #!/usr/bin/python3
-"""
-This is the 0-add_integer module
-
+"""This is the 0-add_integer module
 The example module supplies one function, add_integer(). For example,
-
 >>> add_integer(1, 2)
 3
 """
