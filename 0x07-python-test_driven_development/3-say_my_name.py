@@ -5,9 +5,12 @@ The example module supplies one function, say_my_name(). For example,
 My name is John Smith
 """
 
+
 def say_my_name(first_name, last_name=""):
     """
-    first_name and last_name must be strings otherwise, raise a TypeError exception with the message first_name must be a string or last_name must be a string
+    first_name and last_name must be strings
+    otherwise, raise a TypeError exception with the message
+    first_name must be a string or last_name must be a string
     """
     if not isinstance(first_name, str):
         raise TypeError("first_name must be a string")
