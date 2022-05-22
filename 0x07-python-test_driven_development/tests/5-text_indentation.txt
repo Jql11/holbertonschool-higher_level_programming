@@ -47,3 +47,9 @@ Test with other data tyoe:
         Traceback (most recent call last):
         ...
         TypeError: text must be a string
+
+Test with extra argument:	
+	>>> text_indentation("Hello", "world")
+    	Traceback (most recent call last):
+    	...
+    	TypeError: text_indentation() takes 1 positional argument but 2 were given
