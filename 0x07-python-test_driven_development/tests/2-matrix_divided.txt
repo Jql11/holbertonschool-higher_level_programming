@@ -20,6 +20,9 @@ div is an integer or float and is not 0
 	>>> matrix = [[1, True, 3], [4, False, 6]]
 	>>> matrix_divided(matrix, 3)
 	[[0.33, 0.33, 1.0], [1.33, 0.0, 2.0]]
+	>>> matrix = [[1, float('-inf'), 3], [4, float('inf'), 6]]
+        >>> matrix_divided(matrix, 3)
+        [[0.33, -inf, 1.0], [1.33, inf, 2.0]]
 
 Failed CASES:
 
