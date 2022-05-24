@@ -5,6 +5,7 @@
 import unittest
 max_integer = __import__('6-max_integer').max_integer
 
+
 class TestMaxInteger(unittest.TestCase):
     def test_signed_ints_floats(self):
         self.assertEqual(max_integer([0]), 0)
@@ -28,15 +29,15 @@ class TestMaxInteger(unittest.TestCase):
 
     def test_failed(self):
         with self.assertRaises(TypeError):
-             max_integer({1, 2, 3})
+            max_integer({1, 2, 3})
         with self.assertRaises(TypeError):
-             max_integer([1, "hello", 3])
+            max_integer([1, "hello", 3])
         with self.assertRaises(TypeError):
-             max_integer({1, 2, 3}, {1, 2})
+            max_integer({1, 2, 3}, {1, 2})
         with self.assertRaises(TypeError):
-             max_integer([1, 2], [3, 4])
+            max_integer([1, 2], [3, 4])
         with self.assertRaises(TypeError):
-             max_integer([None, False])
+            max_integer([None, False])
 
 
 if __name__ == "__main__":
