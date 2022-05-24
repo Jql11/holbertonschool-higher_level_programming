@@ -14,6 +14,9 @@ class TestMaxInteger(unittest.TestCase):
         self.assertEqual(max_integer([-1.5, 3.2, -5]), 3.2)
         self.assertEqual(max_integer([{1, 3}, {4, 2}]), {1, 3})
 
+    def test_infinity(self):
+        self.assertEqual(max_integer([1, 2, float('inf')]), float('inf'))
+
     def test_no_argument(self):
         self.assertIsNone(max_integer([]), None)
         self.assertIsNone(max_integer(), None)
