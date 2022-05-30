@@ -1,0 +1,48 @@
+task 1: Write a class MyList that inherits from list
+
+>>> MyList = __import__('1-my_list').MyList
+
+SUCCESS CASES:
+
+Test with signed and unsigned int:
+	>>> my_list = MyList()
+	>>> my_list.append(1)
+	>>> my_list.append(4)
+	>>> my_list.append(2)
+	>>> print(my_list)
+	[1, 4, 2]
+	>>> my_list.print_sorted()
+	[1, 2, 4]
+	>>> print(my_list)
+	[1, 4, 2]
+
+	>>> my_list2 = MyList()
+        >>> my_list2.append(100)
+        >>> my_list2.append(-44)
+        >>> my_list2.append(2)
+        >>> print(my_list2)
+        [100, -44, 2]
+        >>> my_list2.print_sorted()
+        [-44, 2, 100]
+        >>> print(my_list2)
+        [100, -44, 2]
+
+Test with one element
+
+	>>> solo = MyList()
+        >>> solo.append(100)
+        >>> print(solo)
+        [100]
+        >>> solo.print_sorted()
+        [100]
+        >>> print(solo)
+        [100]
+
+Test with no element
+
+	>>> my_list3 = MyList()
+        >>> print(my_list3)
+        []
+        >>> my_list3.print_sorted()
+        []
+
