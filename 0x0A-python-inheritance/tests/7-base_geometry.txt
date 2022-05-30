@@ -19,22 +19,7 @@ Test with non-implemented area:
 	Exception: area() is not implemented
 
 	
-Test with other value type and less or equal than 0:
-	>>> bg = BaseGeometry()
-	>>> bg.integer_validator("name", "John")
-	Traceback (most recent call last):
-     	...
-	[TypeError] name must be an integer
-	>>> bg = BaseGeometry()
-	>>> bg.integer_validator("age", 0)
-	Traceback (most recent call last):
-    	 ...
-	[ValueError] age must be greater than 0
-	>>> bg = BaseGeometry()
-	>>> bg.integer_validator("distance", -4)
-	Traceback (most recent call last):
-     	...
-	[ValueError] distance must be greater than 0
+Test with other value type:
 	>>> bg = BaseGeometry()
 	>>> bg.integer_validator("checkme", None)
 	Traceback (most recent call last):
@@ -65,6 +50,23 @@ Test with other value type and less or equal than 0:
         Traceback (most recent call last):
         ...
         TypeError: checkme must be an integer
+	>>> bg = BaseGeometry()
+        >>> bg.integer_validator("checkme", "hey")
+        Traceback (most recent call last):
+        ...
+        TypeError: checkme must be an integer
+
+Test with non-positive int value:
+	>>> bg = BaseGeometry()
+        >>> bg.integer_validator("checkme", 0)
+        Traceback (most recent call last):
+        ...
+	ValueError: checkme must be greater than 0
+	>>> bg = BaseGeometry()
+        >>> bg.integer_validator("checkme", -4)
+        Traceback (most recent call last):
+        ...
+        ValueError: checkme must be greater than 0
 
 Test with no argument:
 	>>> bg = BaseGeometry()
