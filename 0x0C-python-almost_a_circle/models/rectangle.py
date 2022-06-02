@@ -94,27 +94,27 @@ class Rectangle(Base):
 
     def update(self, *args, **kwargs):
         """order:id, width, height, x, y"""
-        for count, ele in enumerate(args):
-            if count == 0:
-                self.id = ele
-            if count == 1:
-                self.__width = ele
-            if count == 2:
-                self.__height = ele
-            if count == 3:
-                self.__x = ele
-            if count == 0:
-                self.__y = ele
-        if args or args != "":
-            pass
-        for key, value in kwargs.items():
-            if key == 'id':
-                self.id = value
-            if key == 'width':
-                self.__width = value
-            if key == 'height':
-                self.__height = value
-            if key == 'x':
-                self.__x = value
-            if key == 'y':
-                self.__y = value
+        if args:
+            for count, ele in enumerate(args):
+                if count == 0:
+                    self.id = ele
+                if count == 1:
+                    self.__width = ele
+                if count == 2:
+                    self.__height = ele
+                if count == 3:
+                    self.__x = ele
+                if count == 0:
+                    self.__y = ele
+        else:
+            for key, value in kwargs.items():
+                if key == 'id':
+                    self.id = value
+                if key == 'width':
+                    self.__width = value
+                if key == 'height':
+                    self.__height = value
+                if key == 'x':
+                    self.__x = value
+                if key == 'y':
+                    self.__y = value
