@@ -14,7 +14,7 @@ class Square(Rectangle):
 
     def __str__(self):
         return f"[{self.__class__.__name__}]"\
-                f"(<{self.id}>) <{self.x}>/<{self.y}> - <{self.size}>"
+                f" ({self.id}) {self.x}/{self.y} - {self.size}"
 
     @property
     def size(self):
@@ -40,12 +40,11 @@ class Square(Rectangle):
                 if count == 3:
                     self.y = ele
         else:
-            for key, value in kwargs.items():
-                if key == 'id':
-                    self.id = value
-                if key == 'size':
-                    self.size = value
-                if key == 'x':
-                    self.x = value
-                if key == 'y':
-                    self.y = value
+            if 'id' in kwargs:
+                self.id = kwargs['id']
+            if 'size' in kwargs:
+                self.size = kwargs['size']
+            if 'x' in kwargs:
+                self.x = kwargs['x']
+            if 'y' in kwargs:
+                self.y = kwargs['y']
