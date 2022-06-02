@@ -99,22 +99,26 @@ class Rectangle(Base):
                 if count == 0:
                     self.id = ele
                 if count == 1:
-                    self.__width = ele
+                    self.width = ele
                 if count == 2:
-                    self.__height = ele
+                    self.height = ele
                 if count == 3:
-                    self.__x = ele
+                    self.x = ele
                 if count == 4:
-                    self.__y = ele
+                    self.y = ele
         else:
-            for key, value in kwargs.items():
-                if key == 'id':
-                    self.id = value
-                if key == 'width':
-                    self.__width = value
-                if key == 'height':
-                    self.__height = value
-                if key == 'x':
-                    self.__x = value
-                if key == 'y':
-                    self.__y = value
+            if 'id' in kwargs:
+                self.id = kwargs['id']
+            if 'width' in kwargs:
+                self.width = kwargs['width']
+            if 'height' in kwargs:
+                self.height = kwargs['height']
+            if 'x' in kwargs:
+                self.x = kwargs['x']
+            if 'y' in kwargs:
+                self.y = kwargs['y']
+
+    def to_dictionary(self):
+        """returns the dictionary representation of a Rectangle"""
+        return {'x': self.x, 'y': self.y, 'id': self.id,
+                'height': self.height, 'width': self.width}
