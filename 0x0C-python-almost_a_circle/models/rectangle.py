@@ -104,7 +104,7 @@ class Rectangle(Base):
                     self.__height = ele
                 if count == 3:
                     self.__x = ele
-                if count == 0:
+                if count == 4:
                     self.__y = ele
         else:
             for key, value in kwargs.items():
