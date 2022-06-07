@@ -35,7 +35,8 @@ class Base:
         objs = []
         if list_objs is not None:
             for ob in list_objs:
-                objs.append(cls.to_dictionary(ob))
+                if isinstance(obj, Base):
+                    objs.append(cls.to_dictionary(ob))
         json_string = cls.to_json_string(objs)
         filename = cls.__name__ + ".json"
         with open(filename, "w") as f:
@@ -53,6 +54,7 @@ class Base:
         """return an instance with all attributes already set"""
         if cls.__name__ == "Square":
             dummy = cls(1)
+            print(dummy)
         if cls.__name__ == "Rectangle":
             dummy = cls(1, 1)
         dummy.update(**dictionary)
