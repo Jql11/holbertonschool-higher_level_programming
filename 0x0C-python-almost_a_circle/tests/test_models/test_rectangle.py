@@ -10,6 +10,8 @@ Focus is on:
 import unittest
 import inspect
 import pycodestyle
+import io
+from contextlib import redirect_stdout
 
 from models.base import Base
 from models import rectangle
@@ -97,6 +99,79 @@ class TestRectangle(unittest.TestCase):
         """Tests entering too few args to instantiate object"""
         with self.assertRaises(TypeError):
             r = Rectangle()
+
+    def test_private_attribute(self):
+        """test private attribute is accessable from outside the class"""
+        r_1 = Rectangle(1, 2, 3, 4, 5)
+        with self.assertRaises(AttributeError):
+            print(r_1.__width)
+        with self.assertRaises(AttributeError):
+            print(r_1.__height)
+        with self.assertRaises(AttributeError):
+            print(r_1.__x)
+        with self.assertRaises(AttributeError):
+            print(r_1.__y)
+
+
+class TestRectangle_display(unittest.TestCase):
+    """test method of display"""
+
+    def test_display_normal(self):
+        """test display method with normal args"""
+        f = io.StringIO()
+        with redirect_stdout(f):
+            r1 = Rectangle(4, 6)
+            r1.display()
+        printoutstring = f.getvalue()
+        displaystring = "####\n####\n####\n####\n####\n####\n"
+        self.assertEqual(printoutstring, displaystring)
+        f1 = io.StringIO()
+        with redirect_stdout(f1):
+            r2 = Rectangle(2, 3, 2, 2)
+            r2.display()
+        printoutstring = f1.getvalue()
+        displaystring = "\n\n  ##\n  ##\n  ##\n"
+        self.assertEqual(printoutstring, displaystring)
+        f2 = io.StringIO()
+        with redirect_stdout(f2):
+            r3 = Rectangle(3, 2, 1, 0)
+            r3.display()
+        printoutstring = f2.getvalue()
+        displaystring = " ###\n ###\n"
+        self.assertEqual(printoutstring, displaystring)
+
+    def test_display_wrong_args(self):
+        """test wrong arguement"""
+        with self.assertRaises(TypeError):
+            r4 = Rectangle(1, 1, 3, 4)
+            r4.display("r4")
+
+
+class TestStr(unittest.TestCase):
+    """test __str__ method"""
+
+    def test_str_normal(self):
+        f = io.StringIO()
+        with redirect_stdout(f):
+            r1 = Rectangle(4, 6, 2, 1, 12)
+            print(r1)
+        printstring = f.getvalue()
+        stdoutstring = "[Rectangle] (12) 2/1 - 4/6\n"
+        self.assertEqual(printstring, stdoutstring)
+        f1 = io.StringIO()
+        with redirect_stdout(f1):
+            r2 = Rectangle(5, 5, 1)
+            r2.id = 1
+            print(r2)
+        printstring2 = f1.getvalue()
+        stdoutstring2 = "[Rectangle] (1) 1/0 - 5/5\n"
+        self.assertEqual(printstring2, stdoutstring2)
+
+    """def test_str_no_attribute(self):
+        errmsg = "__init__() missing 2 required positional "\
+            "arguments: 'width' and 'height'"
+        with self.assertRaiseRegex(TypeError, errmsg):
+            r = Rectangle()"""
 
 
 class TestRectangle_w(unittest.TestCase):
@@ -357,3 +432,25 @@ class TestRectangle_update(unittest.TestCase):
         rec = Rectangle(1, 2, 3, 4, 5)
         rec.update(None, 9, 8, 7, 6)
         self.assertEqual("[Rectangle] (None) 7/6 - 9/8", str(rec))
+
+
+class TestRectangle_to_dictionary(unittest.TestCase):
+    """test to dictionary method"""
+
+    def test_normal_args(self):
+        """test noraml arguments passed in for this method"""
+        r_1 = Rectangle(1, 2, 3, 4, 5)
+        r_1_to_dictionary = {"id": 5, "width": 1, "height": 2, "x": 3, "y": 4}
+        self.assertEqual(r_1.to_dictionary(), r_1_to_dictionary)
+        r_2 = Rectangle(5, 4, 3, 2, 1)
+        r_2.update(**r_1_to_dictionary)
+        r_2_to_dictionary = r_2.to_dictionary()
+        self.assertEqual(r_1_to_dictionary, r_2_to_dictionary)
+        self.assertEqual(dict, type(r_2_to_dictionary))
+
+    def test_wrong_args(self):
+        """test if having the wrong arguments"""
+        r_1 = Rectangle(2, 2, 2, 2, 2)
+        errmsg = 'to_dictionary() takes 1 positional argument but 2 were given'
+        with self.assertRaises(TypeError):
+            r_1_dictionary = r_1.to_dictionary({"id": 1, "x": 1, "y": 1})
