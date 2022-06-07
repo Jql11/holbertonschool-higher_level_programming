@@ -13,8 +13,9 @@ class Square(Rectangle):
         super().__init__(size, size, x, y, id)
 
     def __str__(self):
+        """print string"""
         return f"[{self.__class__.__name__}]"\
-                f" ({self.id}) {self.x}/{self.y} - {self.size}"
+               f" ({self.id}) {self.x}/{self.y} - {self.size}"
 
     @property
     def size(self):
@@ -29,7 +30,7 @@ class Square(Rectangle):
 
     def update(self, *args, **kwargs):
         """assign attribute"""
-        if args:
+        if args is not None and len(args) != 0:
             for count, ele in enumerate(args):
                 if count == 0:
                     self.id = ele
