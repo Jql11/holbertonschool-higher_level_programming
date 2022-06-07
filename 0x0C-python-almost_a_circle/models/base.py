@@ -5,7 +5,6 @@ private class attribute __nb_objects = 0
 assume id is integer, no need to test type of it
 """
 import json
-import csv
 
 
 class Base:
@@ -74,17 +73,3 @@ class Base:
         except Exception:
             pass
         return lis
-
-    @classmethod
-    def save_to_file_csv(cls, list_objs):
-        """serializes in CSV"""
-        objs = []
-        if list_objs is not None:
-            for ob in list_objs:
-                if isinstance(ob, Base):
-                    objs.append(cls.to_dictionary(ob))
-        filename = cls.__name__ + ".csv"
-        with open(filename, "r") as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=',')
-
-
