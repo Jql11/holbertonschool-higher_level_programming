@@ -1,8 +1,13 @@
 #!/usr/bin/node
-const arg = process.argv;
-if (arg.length <= 3) {
-  console.log(0);
-} else {
-  arg.sort(function (a, b) { return b - a; });
-  console.log(arg[3]);
+
+const numsArray = process.argv.slice(2);
+function secondMax (array) {
+  if (array.length < 2) {
+    return (0);
+  } else {
+    array.sort((x, y) => x - y);
+    array.pop();
+    return (array.pop());
+  }
 }
+console.log(secondMax(numsArray));
