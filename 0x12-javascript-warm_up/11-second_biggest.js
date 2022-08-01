@@ -1,7 +1,8 @@
 #!/usr/bin/node
-const arr = process.argv.slice(2);
-if (arr.length < 2) {
+const arg = process.argv;
+if (arg.length <= 3) {
   console.log(0);
 } else {
-  console.log(arr.sort(function (a, b) { return b - a; })[1]);
+  arg.sort(function (a, b) { return b - a; });
+  console.log(arg[3]);
 }
