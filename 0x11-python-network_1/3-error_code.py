@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-# manage urllib.error.HTTPError exceptions
-# and print: Error code: followed by the HTTP status code
+"""manage urllib.error.HTTPError exceptions
+and print: Error code: followed by the HTTP status code"""
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 import sys
