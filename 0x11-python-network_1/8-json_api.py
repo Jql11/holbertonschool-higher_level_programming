@@ -5,20 +5,23 @@ The letter must be sent in the variable q
 If no argument is given, set q=""
 display the id and name like this: [<id>] <name>
 """
+from sys import argv
 import requests
-import sys
+
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
+    if len(argv) < 2:
         letter = ""
     else:
-        letter = sys.argv[1]
+        letter = argv[1]
     url = 'http://0.0.0.0:5000/search_user'
-    myobj = {'q': letter}
-    x = requests.post(url, data=myobj)
+    payload = {'q': letter}
+    r = requests.post(url, data=payload)
+
     try:
-        if x.json():
-            print("[{}] {}".format(x.json().get('id'), x.json().get('name')))
+        dic = r.json()
+        if dic:
+            print("[{}] {}".format(dic.get('id'), dic.get('name')))
         else:
             print("No result")
     except ValueError as e:
