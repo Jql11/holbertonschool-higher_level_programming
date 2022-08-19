@@ -1,22 +1,25 @@
 #!/usr/bin/python3
-""" using requests package - takes in a letter and sends a POST request to
- http://0.0.0.0:5000/search_user with the letter as a parameter """
-from requests import post
-from sys import argv
-
+"""takes in a letter and sends a POST request to
+http://0.0.0.0:5000/search_user with the letter as a parameter.
+The letter must be sent in the variable q
+If no argument is given, set q=""
+display the id and name like this: [<id>] <name>
+"""
+import requests
+import sys
 
 if __name__ == "__main__":
-    if len(argv) > 1:
-        data = {'q': argv[1]}
+    if len(sys.argv) < 2:
+        letter = ""
     else:
-        data = {'q': ""}
-
-    response = post('http://0.0.0.0:5000/search_user', data)
+        letter = sys.argv[1]
+    url = 'http://0.0.0.0:5000/search_user'
+    myobj = {'q': letter}
+    x = requests.post(url, data=myobj)
     try:
-        j_response = response.json()
-        if len(j_response.keys()) > 0:
-            print("[{}] {}".format(j_response['id'], j_response['name']))
+        if x.json():
+            print("[{}] {}".format(x.json().get('id'), x.json().get('name')))
         else:
             print("No result")
-    except:
+    except ValueError as e:
         print("Not a valid JSON")
