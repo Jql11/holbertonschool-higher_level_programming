@@ -21,7 +21,7 @@ if __name__ == "__main__":
     try:
         dic = r.json()
         if dic:
-            print("[{}] {}".format(dic.get('id'), dic.get('name')))
+            print("[{}] {}".format(dic['id'], dic['name']))
         else:
             print("No result")
     except ValueError as e:
