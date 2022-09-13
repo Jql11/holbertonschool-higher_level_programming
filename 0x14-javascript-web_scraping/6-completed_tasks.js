@@ -7,12 +7,14 @@ axios.get(url)
   .then(response => {
     const tasks = response.data;
     const dict = {};
-    let count = 0;
     for (const i in tasks) {
-      dict[tasks[i].userId]++;
       const completion = tasks[i].completed;
-      if (completion) {
-        count++;
+      if (completion === true) {
+        if (dict[tasks[i].userId] === undefined) {
+	  dict[tasks[i].userId] = 1;
+        } else {
+	  dict[tasks[i].userId] += 1;
+        }
       }
     }
     console.log(dict);
