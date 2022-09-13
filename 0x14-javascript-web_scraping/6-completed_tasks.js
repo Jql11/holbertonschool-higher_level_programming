@@ -11,9 +11,9 @@ axios.get(url)
       const completion = tasks[i].completed;
       if (completion === true) {
         if (dict[tasks[i].userId] === undefined) {
-	  dict[tasks[i].userId] = 1;
+          dict[tasks[i].userId] = 1;
         } else {
-	  dict[tasks[i].userId] += 1;
+          dict[tasks[i].userId] += 1;
         }
       }
     }
